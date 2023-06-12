@@ -48,13 +48,13 @@ const Auth = () => {
         createUserWithEmailAndPassword(auth, email, password)
           .then((userCredential) => {
             const user = userCredential.user;
-            console.log("Signing up with email and password...");
+            console.log("Signing up with email and password..." + user);
             setIsSignUp(!isSignUp);
           })
           .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
-            toast.error(errorMessage);
+            toast.error(errorCode || errorMessage);
           });
       }
     } else {
@@ -62,8 +62,7 @@ const Auth = () => {
         toast.error("Please fill in all the fields.");
       } else {
         signInWithEmailAndPassword(auth, email, password)
-          .then((userCredential) => {
-            const user = userCredential.user;
+          .then(() => {
             navigate("/");
           })
           .catch((error) => {

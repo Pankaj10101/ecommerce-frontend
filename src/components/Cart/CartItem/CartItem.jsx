@@ -11,13 +11,8 @@ const CartItem = () => {
       {cartItems.map((item) => (
         <div key={item.id} className="search-result-item">
           <div className="image-container">
-            <img
-              src={
-                process.env.REACT_APP_DEV_URL +
-                item.attributes.img.data[0].attributes.url
-              }
-              alt=""
-            />
+          {console.log(item.attributes.img.data[0].attributes.url)}
+            <img src={item.attributes.img.data[0].attributes.url} alt="" />
           </div>
           <div className="prod-details">
             <span className="name">{item.attributes.title}</span>

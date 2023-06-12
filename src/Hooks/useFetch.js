@@ -1,22 +1,19 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
+import { fetchDataFromApi } from '../store/api';
 
-import {fetchDataFromApi} from '../store/api'
+const useFetch = (endPoint) => {
+  const [data, setData] = useState();
 
+  const makeApiCall = useCallback(async () => {
+    const res = await fetchDataFromApi(endPoint);
+    setData(res);
+  }, [endPoint]);
 
-const useFetch = (endPoint)=>{
-    const [data, setData] = useState()
+  useEffect(() => {
+    makeApiCall();
+  }, [makeApiCall]);
 
-    useEffect(()=>{
-        makeApiCall()
-    }, [endPoint])
+  return { data };
+};
 
-    const makeApiCall = async () =>{
-        const res = await fetchDataFromApi(endPoint)
-        setData(res)
-    }
-
-    return {data}
-}
-
-
-export default useFetch
+export default useFetch;

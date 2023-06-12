@@ -1,16 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { auth, firestore } from "../firebase-config";
+import { auth } from "../firebase-config";
 import { onAuthStateChanged, signOut } from "firebase/auth";
-import {
-  addDoc,
-  collection,
-  doc,
-  getDoc,
-  getDocs,
-  setDoc,
-  updateDoc,
-} from "firebase/firestore";
 import axios from "axios";
 
 export const Context = createContext();
@@ -23,11 +14,9 @@ const AppContext = (props) => {
   const [totalAmount, setTotalAmount] = useState(0);
   const [user, setUser] = useState(null);
   const location = useLocation();
-  console.log(cartItems);
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location]);
-  console.log(cartItems)
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -66,7 +55,6 @@ const AppContext = (props) => {
       product.attributes.quantity = quantity;
       items = [...items, product];
     }
-    console.log(items)
     setCartItems(items);
 
     if (user) {
@@ -105,7 +93,6 @@ const AppContext = (props) => {
   const syncCartItems = async (uid) => {
     try {
       const res = await axios(`https://shopping-93dce-default-rtdb.firebaseio.com/${uid}.json`)
-      console.log(res.data.items)
       setCartItems(res.data.items)
     } catch (error) {
       console.log(error)
@@ -114,8 +101,7 @@ const AppContext = (props) => {
 
   const updateFirestoreCart = async (uid, items) => {
     try {
-      const res = axios.put(`https://shopping-93dce-default-rtdb.firebaseio.com/${uid}.json`, {items})
-      console.log(res)
+      axios.put(`https://shopping-93dce-default-rtdb.firebaseio.com/${uid}.json`, {items})
     } catch (error) {
       console.log(error)
     }

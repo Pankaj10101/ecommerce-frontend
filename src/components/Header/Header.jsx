@@ -82,9 +82,8 @@ const Header = () => {
               >
                 <img
                   src={
-                    user.photoURL &&
-                    user.photoURL ||
-                      "https://img.freepik.com/free-vector/man-with-mustache_1308-83591.jpg?w=740&t=st=1686061290~exp=1686061890~hmac=597a21eed283198e4361374cbe67730340b709a35e7c4dda51c82a5aeb566395"
+                    (user.photoURL && user.photoURL) ||
+                    "https://img.freepik.com/free-vector/man-with-mustache_1308-83591.jpg?w=740&t=st=1686061290~exp=1686061890~hmac=597a21eed283198e4361374cbe67730340b709a35e7c4dda51c82a5aeb566395"
                   }
                   alt="User Avatar"
                 />

@@ -32,18 +32,20 @@ const Cart = ({ setShowCart }) => {
       }
 
       try {
-        const stripe = await stripePromise;
+        // const stripe = await stripePromise;
         const res = await makePaymentRequest.post("/api/orders", {
-          products: cartItems,
-          name,
-          address,
-          phoneNumber,
+           products: cartItems, name, address, phoneNumber 
         });
-        await stripe.redirectToCheckout({
-          sessionId: res.data.stripeSession.id,
-        });
+      
+        console.log(res.data)
+        // await stripe.redirectToCheckout({
+        //   sessionId: res.data.stripeSession.id,
+        // });
       } catch (error) {
         console.log(error);
+
+
+
       }
     } else {
       navigate("/auth");

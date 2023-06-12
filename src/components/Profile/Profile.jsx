@@ -25,9 +25,6 @@ const Profile = () => {
     setIsModalOpen(true);
   };
 
-  const handleUpdateProfile = () => {
-    setIsModalOpen(true);
-  };
 
   const handleSaveProfile = () => {
     if (displayName.trim() === "" || profilePicture.trim() === "") {

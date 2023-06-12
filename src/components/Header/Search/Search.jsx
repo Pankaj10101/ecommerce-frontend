@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import "./Search.scss";
 import { MdClose } from "react-icons/md";
-
-import prod from "../../../assets/products/speaker-prod-4.webp";
 import { useNavigate } from "react-router-dom";
 import useFetch from "../../../Hooks/useFetch";
 const Search = ({ setShowSearch }) => {

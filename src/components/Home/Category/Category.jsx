@@ -8,7 +8,7 @@ const Category = ({ categories }) => {
       <div className="categories">
         {categories?.data?.map((item) => (
           <div key={item.id} className="category" onClick={()=>navigate(`/category/${item.id}`)}>
-            <img src={process.env.REACT_APP_DEV_URL + item.attributes.img.data.attributes.url} alt="cat1" /> 
+            <img src={ item.attributes.img.data.attributes.url} alt="cat1" /> 
           </div>
         ))}
       </div>
