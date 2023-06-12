@@ -6,50 +6,50 @@ import { BsCartX } from "react-icons/bs";
 import CartItem from "./CartItem/CartItem";
 import { Context } from "../../store/context";
 
-import { loadStripe } from "@stripe/stripe-js";
-import { makePaymentRequest } from "../../store/api";
-import { useNavigate } from "react-router-dom";
+// import { loadStripe } from "@stripe/stripe-js";
+// import { makePaymentRequest } from "../../store/api";
+// import { useNavigate } from "react-router-dom";
 import { Modal, TextField, Button } from "@mui/material";
 
 const Cart = ({ setShowCart }) => {
-  const navigate = useNavigate();
-  const { totalAmount, cartItems, user } = useContext(Context);
+  // const navigate = useNavigate();
+  const { totalAmount, cartItems } = useContext(Context);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [isValidationError, setIsValidationError] = useState(false);
 
-  const stripePromise = loadStripe(
-    process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY
-  );
+  // const stripePromise = loadStripe(
+  //   process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY
+  // );
 
   const handlePayment = async () => {
-    if (user) {
-      if (!name || !address || !phoneNumber) {
-        setIsValidationError(true);
-        return;
-      }
+  //   if (user) {
+  //     if (!name || !address || !phoneNumber) {
+  //       setIsValidationError(true);
+  //       return;
+  //     }
 
-      try {
-        // const stripe = await stripePromise;
-        const res = await makePaymentRequest.post("/api/orders", {
-           products: cartItems, name, address, phoneNumber 
-        });
+  //     try {
+  //       // const stripe = await stripePromise;
+  //       const res = await makePaymentRequest.post("/api/orders", {
+  //          products: cartItems, name, address, phoneNumber 
+  //       });
       
-        console.log(res.data)
-        // await stripe.redirectToCheckout({
-        //   sessionId: res.data.stripeSession.id,
-        // });
-      } catch (error) {
-        console.log(error);
+  //       console.log(res.data)
+  //       // await stripe.redirectToCheckout({
+  //       //   sessionId: res.data.stripeSession.id,
+  //       // });
+  //     } catch (error) {
+  //       console.log(error);
 
 
 
-      }
-    } else {
-      navigate("/auth");
-    }
+  //     }
+  //   } else {
+  //     navigate("/auth");
+  //   }
   };
 
   const handleOpenModal = () => {
